@@ -1,5 +1,5 @@
 resource "aws_instance" "strapi_ec2" {
-  ami           = "ami-0eb9d6fc9fab44d24" # Amazon Linux 2 AMI (Mumbai region)
+  ami           = "ami-0cd582ee8a22cc7be" # Amazon Linux 2 AMI (Mumbai region)
   instance_type = "t2.micro"
   key_name      = "yogesh_key" # Use your existing key name
   user_data     = file("user_data.sh")
