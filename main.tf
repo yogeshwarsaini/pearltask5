@@ -1,7 +1,7 @@
 resource "aws_instance" "strapi_ec2" {
-  ami           = "ami-0cd582ee8a22cc7be" # Amazon Linux 2 AMI (Mumbai region)
+  ami           = "ami-0cd582ee8a22cc7be"
   instance_type = "t2.micro"
-  key_name      = "yogesh_key" # Use your existing key name
+  key_name      = "yogesh_key"
   user_data     = file("user_data.sh")
 
   tags = {
@@ -12,7 +12,7 @@ resource "aws_instance" "strapi_ec2" {
 }
 
 resource "aws_security_group" "strapi_sg" {
-  name        = "strapi_sg"
+  name        = "strapi_sg_yogi"  # 👈 Changed name to avoid duplicate error
   description = "Allow HTTP, HTTPS and SSH"
 
   ingress {
