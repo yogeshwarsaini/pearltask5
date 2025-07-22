@@ -10,6 +10,10 @@ RUN yarn install
 
 COPY . .
 
+# 👇 Fix permissions
+RUN chmod -R 777 /app
+
+# 👇 Now build
 RUN yarn build
 
 EXPOSE 1337
