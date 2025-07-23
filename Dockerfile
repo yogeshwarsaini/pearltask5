@@ -1,21 +1,26 @@
 FROM node:20-alpine
 
-# Install required packages
-RUN apk add --no-cache libc6-compat python3 make g++ build-base
+# Install dependencies
+RUN apk add --no-cache \
+    python3 \
+    make \
+    g++ \
+    openssl
 
+# Set working directory
 WORKDIR /app
 
-COPY package.json yarn.lock ./
-RUN yarn install
-
+# Copy project files
 COPY . .
 
-# 👇 Fix permissions
-RUN chmod -R 777 /app
+# Install dependencies (Make sure sqlite is NOT in package.json)
+RUN npm install
 
-# 👇 Now build
-RUN yarn build
+# Build admin panel
+RUN npm run build
 
+# Expose port
 EXPOSE 1337
 
-CMD ["yarn", "start"]
+# Start app
+CMD ["npm", "run", "start"]
